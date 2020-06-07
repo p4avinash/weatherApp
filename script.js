@@ -12,14 +12,13 @@ button.addEventListener("click", () => {
     )
       .then((response) => response.json())
       .then((response2) => {
-        console.log(response2);
         if (response2.cod === "404") {
           alert("Please! Enter a correct name!");
         } else {
           temp.appendChild(document.createTextNode(response2["main"].temp));
           wind.appendChild(document.createTextNode(response2["wind"].speed));
           desc.appendChild(
-            document.createTextNode(response2["weather"][0].description)
+            document.createTextNode(response2["weather"][0].main)
           );
         }
       });
