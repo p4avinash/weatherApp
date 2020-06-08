@@ -3,6 +3,7 @@ const button = document.querySelector(".button");
 const temp = document.querySelector(".temp");
 const wind = document.querySelector(".windSpeed");
 const desc = document.querySelector(".des");
+const place = document.querySelector(".place");
 
 button.addEventListener("click", () => {
   const city = inputField.value;
@@ -12,15 +13,15 @@ button.addEventListener("click", () => {
     )
       .then((response) => response.json())
       .then((response2) => {
-        if (response2.cod === "404") {
-          alert("Please! Enter a correct name!");
-        } else {
-          temp.appendChild(document.createTextNode(response2["main"].temp));
-          wind.appendChild(document.createTextNode(response2["wind"].speed));
-          desc.appendChild(
-            document.createTextNode(response2["weather"][0].main)
-          );
-        }
+        let inCelcius = Number(response2["main"].temp);
+        inCelcius = inCelcius - 273.15;
+        place.appendChild(document.createTextNode(response2.name + ", "));
+        place.appendChild(document.createTextNode(response2.sys.country));
+        temp.appendChild(
+          document.createTextNode(Math.round(inCelcius) + "° C")
+        );
+        wind.appendChild(document.createTextNode(response2["wind"].speed));
+        desc.appendChild(document.createTextNode(response2["weather"][0].main));
       });
   }
 });
