@@ -5,6 +5,7 @@ const temp = document.querySelector(".temp");
 const wind = document.querySelector(".windSpeed");
 const desc = document.querySelector(".des");
 const place = document.querySelector(".place");
+const icon = document.querySelector(".icon");
 //flag
 var counter = 0;
 
@@ -22,6 +23,8 @@ button.addEventListener("click", () => {
   const city = inputField.value;
   //checking the length more than 0 to operate
   if (city.length > 0) {
+    //fetching icons
+    fetch("http://openweathermap.org/img/wn/10d@2x.png");
     //fetching the data from the API
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=329f835db283cc9f631909eb8ec904eb`
@@ -29,9 +32,12 @@ button.addEventListener("click", () => {
       .then((response) => response.json())
       .then((response2) => {
         counter += 1;
-        //converting the kelvin to celcius
+        //converting the Kelvin to Celcius
         let inCelcius = Number(response2["main"].temp);
         inCelcius = inCelcius - 273.15;
+        //added the icon
+        icon.src = `http://openweathermap.org/img/wn/${response2["weather"][0].icon}@2x.png`;
+
         //added the location
         place.appendChild(document.createTextNode(response2.name + ", "));
         place.appendChild(document.createTextNode(response2.sys.country));
