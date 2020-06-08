@@ -46,10 +46,11 @@
   align-items: center;
   justify-content: center;
   color: white;
+  border-radius: 20px;
 }
 
 .display:hover {
-  box-shadow: 5px 10px #444444;
+  box-shadow: 10px 15px #444444;
   transition: ease 0.5s all;
 }
 
