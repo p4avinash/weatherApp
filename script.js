@@ -30,29 +30,33 @@ const fetchFunction = () => {
     )
       .then((response) => response.json())
       .then((response2) => {
-        counter += 1;
-        //converting the Kelvin to Celcius
-        let inCelcius = Number(response2["main"].temp);
-        inCelcius = inCelcius - 273.15;
-        //added the icon
-        icon.src = `http://openweathermap.org/img/wn/${response2["weather"][0].icon}@2x.png`;
+        if (response2.cod === "404") {
+          alert("please enter a correct city name!");
+        } else {
+          counter += 1;
+          //converting the Kelvin to Celcius
+          let inCelcius = Number(response2["main"].temp);
+          inCelcius = inCelcius - 273.15;
+          //added the icon
+          icon.src = `http://openweathermap.org/img/wn/${response2["weather"][0].icon}@2x.png`;
 
-        //added the location
-        place.appendChild(document.createTextNode(response2.name + ", "));
-        place.appendChild(document.createTextNode(response2.sys.country));
-        //added the temperature
-        temp.appendChild(
-          document.createTextNode(Math.round(inCelcius) + "° C")
-        );
-        //added the wind speed
-        wind.appendChild(document.createTextNode(response2["wind"].speed));
-        //added the description
-        desc.appendChild(
-          document.createTextNode(response2["weather"][0].description)
-        );
-      })
-      .catch((error) => alert("please, enter a correct city name!"));
+          //added the location
+          place.appendChild(document.createTextNode(response2.name + ", "));
+          place.appendChild(document.createTextNode(response2.sys.country));
+          //added the temperature
+          temp.appendChild(
+            document.createTextNode(Math.round(inCelcius) + "° C")
+          );
+          //added the wind speed
+          wind.appendChild(document.createTextNode(response2["wind"].speed));
+          //added the description
+          desc.appendChild(
+            document.createTextNode(response2["weather"][0].description)
+          );
+        }
+      });
     inputField.value = "";
+    counter = 0;
   }
 };
 
