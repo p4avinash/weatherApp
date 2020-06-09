@@ -9,9 +9,8 @@ const icon = document.querySelector(".icon");
 //flag
 var counter = 0;
 
-//adding the event listener to the button
-button.addEventListener("click", () => {
-  //removing the existing elements before painting the new one
+//just the fetch function
+const fetchFunction = () => {
   if (counter > 0) {
     temp.removeChild(temp.childNodes[1]);
     wind.removeChild(wind.childNodes[1]);
@@ -54,5 +53,15 @@ button.addEventListener("click", () => {
       })
       .catch((error) => alert("please, enter a correct city name!"));
     inputField.value = "";
+  }
+};
+
+//adding the click functionality
+button.addEventListener("click", fetchFunction);
+
+//adding the keypress functionality
+inputField.addEventListener("keypress", (event) => {
+  if (event.keyCode === 13) {
+    fetchFunction();
   }
 });
