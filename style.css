@@ -40,12 +40,11 @@
   height: 60vh;
   background: linear-gradient(
     to bottom right,
-    rgb(250, 110, 110),
-    rgb(109, 109, 236)
+    rgb(255, 188, 188),
+    rgb(109, 225, 236)
   );
   align-items: center;
   justify-content: center;
-  color: white;
   border-radius: 20px;
 }
 
