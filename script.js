@@ -30,7 +30,6 @@ const fetchFunction = () => {
     )
       .then((response) => response.json())
       .then((response2) => {
-        console.log(response2);
         if (response2.cod === "404") {
           alert("please enter a correct city name!");
         } else {
@@ -71,7 +70,6 @@ const fetchFunction = () => {
         )
           .then((response) => response.json())
           .then((response2) => {
-            console.log(response2);
             if (counter > 0) {
               temp.removeChild(temp.childNodes[1]);
               wind.removeChild(wind.childNodes[1]);
@@ -102,7 +100,9 @@ const fetchFunction = () => {
           });
       });
     } else {
-      console.log("Geo location is not available");
+      alert(
+        "Oops! your device doesn't support Geo Location. Please type the location manually"
+      );
     }
   }
 };
