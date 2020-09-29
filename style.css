@@ -6,6 +6,7 @@
 
 body {
   background-color: #333;
+  transition:0.5s all ease
 }
 
 h1 {
@@ -56,6 +57,7 @@ input {
   justify-content: center;
 }
 
+
 .display {
   display: flex;
   flex-direction: column;
@@ -72,6 +74,11 @@ p > span {
   color: black;
   text-transform: uppercase;
   font-weight: 700;
+}
+
+.txt-collection{
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 600px) {

@@ -6,12 +6,22 @@ const wind = document.querySelector(".windSpeed");
 const desc = document.querySelector(".des");
 const place = document.querySelector(".place");
 const icon = document.querySelector(".icon");
+const loader = document.querySelector('.loader');
 //flag
 var counter = 0;
 
+
+
 //just the fetch function
 const fetchFunction = () => {
+  icon.style.display = "none"
+  place.style.display = "none";
+  temp.style.display = "none";
+  wind.style.display = "none";
+  desc.style.display = "none";
+
   if (counter > 0) {
+    loader.style.display = 'block'
     temp.removeChild(temp.childNodes[1]);
     wind.removeChild(wind.childNodes[1]);
     desc.removeChild(desc.childNodes[1]);
@@ -39,7 +49,7 @@ const fetchFunction = () => {
           inCelcius = inCelcius - 273.15;
           //added the icon
           icon.src = `http://openweathermap.org/img/wn/${response2["weather"][0].icon}@2x.png`;
-          icon.style.display = "block";
+          
 
           //added the location
           place.appendChild(document.createTextNode(response2.name + ", "));
@@ -54,11 +64,19 @@ const fetchFunction = () => {
           desc.appendChild(
             document.createTextNode(response2["weather"][0].description)
           );
+
+          icon.style.display = "block";
+          place.style.display = "block";
+          temp.style.display = "block";
+          wind.style.display = "block";
+          desc.style.display = "block";
+          loader.style.display = 'none'
         }
       });
     inputField.value = "";
     counter = 0;
   } else {
+    loader.style.display = 'block'
     //asking for the permission for location
     if ("geolocation" in navigator) {
       console.log("Geo location is available");
@@ -83,7 +101,7 @@ const fetchFunction = () => {
             inCelcius = inCelcius - 273.15;
             //added the icon
             icon.src = `http://openweathermap.org/img/wn/${response2["weather"][0].icon}@2x.png`;
-            icon.style.display = "block";
+            
             //added the location
             place.appendChild(document.createTextNode(response2.name + ", "));
             place.appendChild(document.createTextNode(response2.sys.country));
@@ -97,6 +115,12 @@ const fetchFunction = () => {
             desc.appendChild(
               document.createTextNode(response2["weather"][0].description)
             );
+            icon.style.display = "block";
+          place.style.display = "block";
+          temp.style.display = "block";
+          wind.style.display = "block";
+          desc.style.display = "block";
+          loader.style.display = 'none'
           });
       });
     } else {
@@ -109,7 +133,6 @@ const fetchFunction = () => {
 
 //adding the click functionality
 button.addEventListener("click", fetchFunction);
-
 //adding the keypress functionality
 inputField.addEventListener("keypress", (event) => {
   if (event.keyCode === 13) {

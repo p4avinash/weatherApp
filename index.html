@@ -27,13 +27,20 @@
         <div class="display">
           <img class="icon" src="" style="display: none" />
 
-          <p class="place"><span>Location: </span></p>
-          <p class="temp"><span>Temperature: </span></p>
-          <p class="windSpeed"><span>Wind Speed: </span></p>
-          <p class="des"><span>Description: </span></p>
+          <div class="loader" style="display: none;">
+            <img src="loader.svg" alt="loading">
+          </div>
+
+          <div class="txt-collection">
+            <p class="place txt-details" style="display: none"><span>Location: </span></p>
+            <p class="temp txt-details" style="display: none"><span>Temperature: </span></p>
+            <p class="windSpeed txt-details" style="display: none"><span>Wind Speed: </span></p>
+            <p class="des txt-details" style="display: none"><span>Description: </span></p>
+          </div>
         </div>
       </div>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
